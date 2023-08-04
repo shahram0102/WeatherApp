@@ -1,11 +1,19 @@
 module.exports = {
   root: true,
-  parser: '@typescript-eslint/parser',
-  plugins: ['@typescript-eslint', 'prettier'],
-  extends: ['@react-native-community', 'plugin:@typescript-eslint/recommended', 'prettier'],
+  extends: '@callstack',
   rules: {
-    'prettier/prettier': 'error',
-    '@typescript-eslint/explicit-module-boundary-types': 'off',
-    '@typescript-eslint/no-unused-vars': ['error', { argsIgnorePattern: '^_' }],
+    'react-native/no-raw-text': 0,
+    'promise/prefer-await-to-then': 0,
+  },
+  settings: {
+    'import/resolver': {
+      alias: {
+        map: [
+          ['src', './src'],
+          ['assets', './assets'],
+        ],
+        extensions: ['.ts', '.tsx', '.js', '.jsx', '.json'],
+      },
+    },
   },
 };
