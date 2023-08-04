@@ -63,7 +63,7 @@ export default function HomeScreen() {
               {locations.map((loc, index) => {
                 const showBorder = index + 1 != locations.length;
                 const borderClass = showBorder
-                  ? ' border-b-2 border-b-gray-400'
+                  ? 'border-b-2 border-b-gray-400'
                   : '';
                 return (
                   <TouchableOpacity
@@ -154,31 +154,32 @@ export default function HomeScreen() {
             contentContainerStyle={{ paddingHorizontal: 15 }}
             showsHorizontalScrollIndicator={false}
           >
-            {/* {
-                    weather?.forecast?.forecastday?.map((item,index)=>{
-                      const date = new Date(item.date);
-                      const options = { weekday: 'long' };
-                      let dayName = date.toLocaleDateString('en-US', options);
-                      dayName = dayName.split(',')[0];
+            {/* {weather?.forecast?.forecastday?.map((item, index) => {
+              const date = new Date(item.date);
+              const options = { weekday: 'long' };
+              let dayName = date.toLocaleDateString('en-US', options);
+              dayName = dayName.split(',')[0];
 
-                      return (
-                        <View 
-                          key={index} 
-                          className="flex justify-center items-center w-24 rounded-3xl py-3 space-y-1 mr-4" 
-                          style={{backgroundColor: theme.bgWhite(0.15)}}
-                        >
-                          <Image 
-                            // source={{uri: 'https:'+item?.day?.condition?.icon}}
-                            source={weatherImages[item?.day?.condition?.text || 'other']}
-                              className="w-11 h-11" />
-                          <Text className="text-white">{dayName}</Text>
-                          <Text className="text-white text-xl font-semibold">
-                            {item?.day?.avgtemp_c}&#176;
-                          </Text>
-                        </View>
-                      )
-                    })
-                  } */}
+              return (
+                <View
+                  key={index}
+                  className="flex justify-center items-center w-24 rounded-3xl py-3 space-y-1 mr-4"
+                  style={{ backgroundColor: theme.bgWhite(0.15) }}
+                >
+                  <Image
+                    // source={{uri: 'https:'+item?.day?.condition?.icon}}
+                    source={
+                      weatherImages[item?.day?.condition?.text || 'other']
+                    }
+                    className="w-11 h-11"
+                  />
+                  <Text className="text-white">{dayName}</Text>
+                  <Text className="text-white text-xl font-semibold">
+                    {item?.day?.avgtemp_c}&#176;
+                  </Text>
+                </View>
+              );
+            })} */}
           </ScrollView>
         </View>
       </SafeAreaView>
