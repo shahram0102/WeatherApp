@@ -19,12 +19,18 @@
     },
     "android": {
       "adaptiveIcon": {
-        "foregroundImage": "./assets/adaptive-icon.png",
+        "foregroundImage": "./assets/images/bg.png",
         "backgroundColor": "#ffffff"
-      }
+      },
+      "package": "com.shahram0102.WeatherApp"
     },
     "web": {
       "favicon": "./assets/favicon.png"
+    },
+    "extra": {
+      "eas": {
+        "projectId": "316d6283-8646-4942-a723-2d1530e92c16"
+      }
     }
   }
 }
