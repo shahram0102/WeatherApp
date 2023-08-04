@@ -1,7 +1,4 @@
-import { useMutation } from '@tanstack/react-query';
 import { StatusBar } from 'expo-status-bar';
-import { debounce } from 'lodash';
-import { useCallback, useEffect, useState } from 'react';
 import {
   Image,
   SafeAreaView,
@@ -17,50 +14,19 @@ import {
   MapPinIcon,
 } from 'react-native-heroicons/outline';
 import * as Progress from 'react-native-progress';
-import useLocationApi from 'src/api/location.api';
-import useWeatherApi from 'src/api/weather.api';
 import { WEATHER_IMAGES } from 'src/constants';
 import { theme } from 'src/theme/theme';
+import useHomeScreen from './useHomeScreen';
 export default function HomeScreen() {
-  const [showSearch, setShowSearch] = useState(false);
-  const { getLocationEndPoint } = useLocationApi();
-  const { forecastWeather } = useWeatherApi();
-  const { mutate: mutateLocation, data: locations } = useMutation(
-    ['locations'],
-    (cityName: string) => getLocationEndPoint({ cityName }),
-  );
   const {
-    mutate: mutateWeather,
-    data: weather,
-    isLoading: loadingGetWeather,
-  } = useMutation(
-    ['locations'],
-    (cityName: string) => forecastWeather({ cityName, days: 7 }),
-    {
-      onSuccess() {
-        setShowSearch(false);
-      },
-    },
-  );
-
-  useEffect(() => {
-    mutateWeather('mashhad');
-  }, []);
-
-  function onPress() {
-    setShowSearch((state) => !state);
-  }
-
-  const handleSearch = (search: string) => {
-    // console.log('value: ',search);
-    if (search && search.length > 2) mutateLocation(search);
-  };
-
-  const handleTextDebounce = useCallback(debounce(handleSearch, 1200), []);
-
-  const handleLocation = (loc: ILocation) => {
-    mutateWeather(loc.name);
-  };
+    handleLocation,
+    handleTextDebounce,
+    loadingGetWeather,
+    locations,
+    onPress,
+    showSearch,
+    weather,
+  } = useHomeScreen();
 
   return (
     <View className="flex-1 relative">
@@ -121,7 +87,9 @@ export default function HomeScreen() {
                       }
                     >
                       <MapPinIcon size="20" color="gray" />
-                      <Text className="text-black text-lg ml-2">{loc.name}</Text>
+                      <Text className="text-black text-lg ml-2">
+                        {loc.name}
+                      </Text>
                     </TouchableOpacity>
                   );
                 })}
